@@ -1,0 +1,34 @@
+Camera-Effects:
+  spectator-mode: true
+  invisible: false
+
+Messages:
+  Camera:
+    viewing-stop: "Viewing stop"
+    viewing-start: "Viewing start"
+    viewing-preview-error: "Viewing preview error"
+    viewing-preview-start: "Viewing preview start"
+    viewing-preview-ended: "Viewing preview ended"
+  Commands:
+    AddCommand:
+      add: "Add"
+      help: "Help"
+      no-premission: "No premission"
+    Select:
+      select: "Selected!"
+      not-select: "Not selected"
+      help: "Help"
+    AddPoint:
+      add: "Add"
+      help: "Help"
+      no-premission: "No premission"
+    Create:
+      created: "Created"
+      already-exists: "Already exists"
+      help: "Help"
+      no-premission: "No premission"
+    Help:
+      no-permission: "No premission"
+    Invisible:
+      Help: "Help"
+      no-permission: "No premission"

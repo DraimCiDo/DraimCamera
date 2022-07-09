@@ -1,0 +1,57 @@
+name: DraimCamera
+version: '${project.version}'
+main: net.draimcido.draimcamera.Main
+api-version: 1.19
+authors: [ DraimGooSe ]
+
+commands:
+  draimcamera:
+    description: Основная команда плагина
+    aliases: [ dc, draimc, dcamera ]
+
+permissions:
+  draimcamera.cmd.help:
+    description: Получение помощи по команде
+    default: false
+  draimcamera.cmd.create:
+    description: Создание камеры
+    default: false
+  draimcamera.cmd.remove:
+    description: Удаление камеры
+    default: false
+  draimcamera.cmd.addpoint:
+    description: Добавление точки в камеру
+    default: false
+  draimcamera.cmd.removepoint:
+    description: Удаление точки из камеры
+    default: false
+  draimcamera.cmd.select:
+    description: Выбор камеры
+    default: false
+  draimcamera.cmd.preview:
+    description: Предпросмотр камеры
+    default: false
+  draimcamera.cmd.info:
+    description: Получение информации о камере
+    default: false
+  draimcamera.cmd.setduration:
+    description: Установка продолжительности предпросмотра
+    default: false
+  draimcamera.cmd.start:
+    description: Запуск предпросмотра
+    default: false
+  draimcamera.cmd.startother:
+    description: Запуск предпросмотра другому игроку
+    default: false
+  draimcamera.cmd.stop:
+    description: Остановка предпросмотра
+    default: false
+  draimcamera.cmd.stats:
+    description: Получение статистики по камере
+    default: false
+  draimcamera.bypass:
+    description: Предоставление доступа к камере
+    default: false
+  draimcamera.reload:
+    description: Перезагрузка плагина
+    default: false
