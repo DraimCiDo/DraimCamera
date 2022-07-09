@@ -2,6 +2,8 @@ Camera-Effects:
   spectator-mode: true
   invisible: false
 
+Point-Preview-Time: 5
+
 Messages:
   Camera:
     viewing-stop: "Viewing stop"
@@ -31,4 +33,8 @@ Messages:
       no-permission: "No premission"
     Invisible:
       Help: "Help"
+      no-permission: "No premission"
+    Preview:
+      no-camera: "No camera"
+      arleady-active: "Already active"
       no-permission: "No premission"
