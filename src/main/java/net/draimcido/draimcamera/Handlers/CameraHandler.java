@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * The type Camera handler.
+ */
 public class CameraHandler extends BukkitRunnable {
 
     private int single_frame_duration_ms = 50;
@@ -30,12 +33,24 @@ public class CameraHandler extends BukkitRunnable {
     private Location privious_player_location;
     private boolean previous_invisible;
 
+    /**
+     * Instantiates a new Camera handler.
+     *
+     * @param plugin      the plugin
+     * @param player      the player
+     * @param camera_name the camera name
+     */
     public CameraHandler(Main plugin, Player player, String camera_name) {
         this.plugin = plugin;
         this.player = player;
         this.camera_name = camera_name;
     }
 
+    /**
+     * Generate path camera handler.
+     *
+     * @return the camera handler
+     */
     public CameraHandler generatePath() {
         int max_points = (this.plugin.getConfigCameras().getDuration(this.camera_name) * 1000) / this.single_frame_duration_ms;
 
@@ -124,6 +139,11 @@ public class CameraHandler extends BukkitRunnable {
         return new Vector(end.getX() - start.getX(), end.getY() - start.getY(), end.getZ() - start.getZ());
     }
 
+    /**
+     * Start camera handler.
+     *
+     * @return the camera handler
+     */
     public CameraHandler start() {
         this.privious_gamemode = this.player.getGameMode();
         this.privious_player_location = this.player.getLocation();
@@ -143,6 +163,11 @@ public class CameraHandler extends BukkitRunnable {
         return this;
     }
 
+    /**
+     * Stop camera handler.
+     *
+     * @return the camera handler
+     */
     public CameraHandler stop() {
         plugin.player_camera_mode.put(player.getUniqueId(), CameraMode.NONE);
         try {
@@ -190,6 +215,14 @@ public class CameraHandler extends BukkitRunnable {
         }
     }
 
+    /**
+     * Preview camera handler.
+     *
+     * @param player       the player
+     * @param num          the num
+     * @param preview_time the preview time
+     * @return the camera handler
+     */
     public CameraHandler preview(Player player, int num, int preview_time) {
         List<String> camera_points = plugin.getConfigCameras().getPoints(camera_name);
 

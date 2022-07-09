@@ -13,30 +13,66 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The type Color utils.
+ */
 public class ColorUtils {
 
     private static final String RAW_GRADIENT_HEX_REGEX = "<\\\\$#[A-Fa-f0-9]{6}>";
 
+    /**
+     * The constant HEX_REGEX.
+     */
     public static final String HEX_REGEX = "#[A-Fa-f0-9]{6}";
 
+    /**
+     * The constant TAG_REGEX.
+     */
     public static final String TAG_REGEX = "^[A-Za-z0-9_]{1,16}$";
 
+    /**
+     * The constant RAW_HEX_REGEX.
+     */
     public static final String RAW_HEX_REGEX = "<#[A-Fa-f0-9]{6}>";
 
+    /**
+     * Legacy to json string.
+     *
+     * @param legacyString the legacy string
+     * @return the string
+     */
     public static String legacyToJson(String legacyString) {
         if (legacyString == null) return "";
         return ComponentSerializer.toString(TextComponent.fromLegacyText(legacyString));
     }
 
+    /**
+     * Json to legacy string.
+     *
+     * @param json the json
+     * @return the string
+     */
     public static String jsonToLegacy(String json) {
         if (json == null) return "";
         return BaseComponent.toLegacyText(ComponentSerializer.parse(json));
     }
 
+    /**
+     * Color bungee string.
+     *
+     * @param legacyMessage the legacy message
+     * @return the string
+     */
     public static String colorBungee(String legacyMessage) {
         return legacyToJson(colorMessage(legacyMessage));
     }
 
+    /**
+     * Color message string.
+     *
+     * @param legacyMessage the legacy message
+     * @return the string
+     */
     public static String colorMessage(String legacyMessage) {
         try {
             if (legacyMessage.isEmpty()) {
@@ -151,11 +187,23 @@ public class ColorUtils {
         return message;
     }
 
+    /**
+     * Colorize string.
+     *
+     * @param string the string
+     * @return the string
+     */
     public static String colorize(String string) {
         return ChatColor.translateAlternateColorCodes('&', string);
     }
 
-    // Реплейс цветов в консоли
+    /**
+     * Color string.
+     *
+     * @param message the message
+     * @return the string
+     */
+// Реплейс цветов в консоли
     public static String color(String message) {
         return message.replace("&", "§");
     }

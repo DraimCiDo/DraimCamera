@@ -17,8 +17,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The type Main.
+ */
 public final class Main extends JavaPlugin {
 
+    /**
+     * The constant config.
+     */
     public static FileConfiguration config;
 
     private static Main instance;
@@ -27,34 +33,83 @@ public final class Main extends JavaPlugin {
     private MessageConfig config_plugin;
 
 
+    /**
+     * The Player selected camera.
+     */
     public HashMap<UUID, String> player_selected_camera = new HashMap<UUID, String>();
+    /**
+     * The Player camera mode.
+     */
     public HashMap<UUID, CameraMode> player_camera_mode = new HashMap<UUID, CameraMode>();
+    /**
+     * The Player camera handler.
+     */
     public HashMap<UUID, CameraHandler> player_camera_handler = new HashMap<UUID, CameraHandler>();
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static Main getInstance() {
         return instance;
     }
 
+    /**
+     * Gets config int.
+     *
+     * @param path the path
+     * @return the config int
+     */
     public static int getConfigInt(String path) {
         return config.getInt(path);
     }
 
+    /**
+     * Gets config integer list.
+     *
+     * @param path the path
+     * @return the config integer list
+     */
     public static List<Integer> getConfigIntegerList(String path) {
         return config.getIntegerList(path);
     }
 
+    /**
+     * Gets config boolean.
+     *
+     * @param path the path
+     * @return the config boolean
+     */
     public static Boolean getConfigBoolean(String path) {
         return config.getBoolean(path);
     }
 
+    /**
+     * Gets config string list.
+     *
+     * @param path the path
+     * @return the config string list
+     */
     public static List<String> getConfigStringList(String path) {
         return config.getStringList(path);
     }
 
+    /**
+     * Gets config string.
+     *
+     * @param path the path
+     * @return the config string
+     */
     public static String getConfigString(String path) {
         return config.getString(path);
     }
 
+    /**
+     * Gets plugin description file.
+     *
+     * @return the plugin description file
+     */
     public PluginDescriptionFile getPluginDescriptionFile() {
         return this.pdf;
     }
@@ -108,10 +163,20 @@ public final class Main extends JavaPlugin {
         config_cameras.saveConfig();
     }
 
+    /**
+     * Gets message config.
+     *
+     * @return the message config
+     */
     public MessageConfig getMessageConfig() {
         return config_plugin;
     }
 
+    /**
+     * Gets config cameras.
+     *
+     * @return the config cameras
+     */
     public CameraConfig getConfigCameras() {
         return config_cameras;
     }

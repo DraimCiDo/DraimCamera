@@ -9,8 +9,17 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * The type Preview.
+ */
 public class Preview extends DraimCameraCommand {
 
+    /**
+     * Instantiates a new Preview.
+     *
+     * @param plugin       the plugin
+     * @param command_name the command name
+     */
     public Preview(Main plugin, String command_name) {
         super(plugin, command_name, CmdExecutor.PLAYER);
     }

@@ -12,6 +12,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * The type Camera config.
+ */
 public class CameraConfig {
 
     private File configFile;
@@ -19,12 +22,20 @@ public class CameraConfig {
 
     private Main plugin;
 
+    /**
+     * Instantiates a new Camera config.
+     *
+     * @param plugin the plugin
+     */
     public CameraConfig(Main plugin) {
         this.plugin = plugin;
 
         createConfigFile();
     }
 
+    /**
+     * Create config file.
+     */
     public void createConfigFile() {
         configFile = new File(plugin.getDataFolder(), "camera.yml");
         if (!configFile.exists()) {
@@ -40,10 +51,18 @@ public class CameraConfig {
         }
     }
 
+    /**
+     * Gets config.
+     *
+     * @return the config
+     */
     public FileConfiguration getConfig() {
         return this.config;
     }
 
+    /**
+     * Save config.
+     */
     public void saveConfig() {
         try {
             this.config.save(this.configFile);
@@ -52,6 +71,12 @@ public class CameraConfig {
         }
     }
 
+    /**
+     * Create camera boolean.
+     *
+     * @param camera_name the camera name
+     * @return the boolean
+     */
     public boolean create_camera(String camera_name) {
         if (camera_exists(camera_name))
             return false;
@@ -62,6 +87,12 @@ public class CameraConfig {
         return true;
     }
 
+    /**
+     * Remove camera boolean.
+     *
+     * @param camera_name the camera name
+     * @return the boolean
+     */
     public boolean remove_camera(String camera_name) {
         if (!camera_exists(camera_name))
             return false;
@@ -70,6 +101,13 @@ public class CameraConfig {
         saveConfig();
         return true;
     }
+
+    /**
+     * Camera exists boolean.
+     *
+     * @param camera_name the camera name
+     * @return the boolean
+     */
     public boolean camera_exists(String camera_name) {
         boolean exists = false;
         for (String cam : getConfig().getConfigurationSection("cameras").getKeys(false)) {
@@ -81,6 +119,12 @@ public class CameraConfig {
         return exists;
     }
 
+    /**
+     * Gets camera name ignorecase.
+     *
+     * @param input_name the input name
+     * @return the camera name ignorecase
+     */
     public String get_camera_name_ignorecase(String input_name) {
         String camera_name = null;
         for (String cam : getConfig().getConfigurationSection("cameras").getKeys(false)) {
@@ -92,6 +136,13 @@ public class CameraConfig {
         return camera_name;
     }
 
+    /**
+     * Camera addpoint.
+     *
+     * @param loc         the loc
+     * @param easing      the easing
+     * @param camera_name the camera name
+     */
     public void camera_addpoint(Location loc, String easing, String camera_name) {
         if (!camera_exists(camera_name)) return;
 
@@ -104,6 +155,12 @@ public class CameraConfig {
         saveConfig();
     }
 
+    /**
+     * Camera addcommand.
+     *
+     * @param command     the command
+     * @param camera_name the camera name
+     */
     public void camera_addcommand(String command, String camera_name) {
         if (!camera_exists(camera_name)) return;
 
@@ -116,6 +173,12 @@ public class CameraConfig {
         saveConfig();
     }
 
+    /**
+     * Camera removepoint.
+     *
+     * @param camera_name the camera name
+     * @param num         the num
+     */
     public void camera_removepoint(String camera_name, int num) {
         if (!camera_exists(camera_name)) return;
 
@@ -134,12 +197,25 @@ public class CameraConfig {
         }
     }
 
+    /**
+     * Gets points.
+     *
+     * @param camera_name the camera name
+     * @return the points
+     */
     public List<String> getPoints(String camera_name) {
         if (!camera_exists(camera_name)) return null;
 
         return getConfig().getStringList("cameras." + get_camera_name_ignorecase(camera_name) + ".points");
     }
 
+    /**
+     * Sets duration.
+     *
+     * @param camera_name the camera name
+     * @param duration    the duration
+     * @return the duration
+     */
     public boolean setDuration(String camera_name, int duration) {
         if (!camera_exists(camera_name)) return false;
 
@@ -148,16 +224,33 @@ public class CameraConfig {
         return true;
     }
 
+    /**
+     * Gets duration.
+     *
+     * @param camera_name the camera name
+     * @return the duration
+     */
     public int getDuration(String camera_name) {
         if (!camera_exists(camera_name)) return -1;
 
         return getConfig().getInt("cameras." + get_camera_name_ignorecase(camera_name) + ".duration");
     }
 
+    /**
+     * Gets cameras.
+     *
+     * @return the cameras
+     */
     public Set<String> getCameras() {
         return getConfig().getConfigurationSection("cameras").getKeys(false);
     }
 
+    /**
+     * Add player boolean.
+     *
+     * @param uuid the uuid
+     * @return the boolean
+     */
     public boolean addPlayer(UUID uuid) {
         List<String> players = getConfig().getStringList("players");
 
@@ -171,6 +264,11 @@ public class CameraConfig {
         return false;
     }
 
+    /**
+     * Gets players.
+     *
+     * @return the players
+     */
     public List<String> getPlayers() {
         return getConfig().getStringList("players");
     }

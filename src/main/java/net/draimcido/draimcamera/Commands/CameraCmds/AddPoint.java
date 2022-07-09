@@ -7,8 +7,17 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * The type Add point.
+ */
 public class AddPoint extends DraimCameraCommand {
 
+    /**
+     * Instantiates a new Add point.
+     *
+     * @param plugin       the plugin
+     * @param command_name the command name
+     */
     public AddPoint(Main plugin, String command_name) {
         super(plugin, command_name, CmdExecutor.PLAYER);
     }

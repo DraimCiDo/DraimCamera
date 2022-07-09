@@ -7,8 +7,17 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * The type Invisible.
+ */
 public class Invisible extends DraimCameraCommand {
 
+    /**
+     * Instantiates a new Invisible.
+     *
+     * @param plugin       the plugin
+     * @param command_name the command name
+     */
     public Invisible(Main plugin, String command_name) {
         super(plugin, command_name, CmdExecutor.PLAYER);
     }

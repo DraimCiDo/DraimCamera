@@ -10,12 +10,27 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The type Camera utils.
+ */
 public class CameraUtils {
 
+    /**
+     * Serialize location string.
+     *
+     * @param loc the loc
+     * @return the string
+     */
     public static String serializeLocation(Location loc) {
         return loc.getWorld().getUID() + ";" + loc.getX() + ";" + loc.getY() + ";" + loc.getZ() + ";" + loc.getYaw() + ";" + loc.getPitch();
     }
 
+    /**
+     * Deserialize location location.
+     *
+     * @param loc the loc
+     * @return the location
+     */
     public static Location deserializeLocation(String loc) {
         String[] input_split = loc.split(";");
 
@@ -36,6 +51,12 @@ public class CameraUtils {
         return new Location(world, x, y, z, yaw, pitch);
     }
 
+    /**
+     * Time string to seconds convertor int.
+     *
+     * @param time_input the time input
+     * @return the int
+     */
     public static int timeStringToSecondsConvertor(String time_input) {
         Matcher regex_int = Pattern.compile("^\\d[^a-zA-Z]{0,1}$").matcher(time_input);
 
@@ -63,7 +84,12 @@ public class CameraUtils {
     }
 
 
-
+    /**
+     * Is player invisible boolean.
+     *
+     * @param player the player
+     * @return the boolean
+     */
     public static boolean isPlayerInvisible(Player player) {
         try {
             return player.isInvisible();

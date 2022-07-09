@@ -10,10 +10,18 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Tab complete.
+ */
 public class TabComplete implements TabCompleter {
 
     private Main plugin;
 
+    /**
+     * Instantiates a new Tab complete.
+     *
+     * @param plugin the plugin
+     */
     public TabComplete(Main plugin) {
         this.plugin = plugin;
     }

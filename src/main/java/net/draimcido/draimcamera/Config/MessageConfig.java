@@ -9,6 +9,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * The type Message config.
+ */
 public class MessageConfig {
 
     private File file;
@@ -16,6 +19,11 @@ public class MessageConfig {
 
     private Main plugin;
 
+    /**
+     * Instantiates a new Message config.
+     *
+     * @param plugin the plugin
+     */
     public MessageConfig(Main plugin) {
         this.plugin = plugin;
 
@@ -37,10 +45,18 @@ public class MessageConfig {
         }
     }
 
+    /**
+     * Gets config.
+     *
+     * @return the config
+     */
     public FileConfiguration getConfig() {
         return this.configs;
     }
 
+    /**
+     * Save config.
+     */
     public void saveConfig() {
         try {
             this.configs.save(this.file);

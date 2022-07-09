@@ -7,8 +7,17 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * The type Help.
+ */
 public class Help extends DraimCameraCommand {
 
+    /**
+     * Instantiates a new Help.
+     *
+     * @param plugin       the plugin
+     * @param command_name the command name
+     */
     public Help(Main plugin, String command_name) {
         super(plugin, command_name, CmdExecutor.PLAYER);
     }
