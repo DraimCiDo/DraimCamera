@@ -49,3 +49,7 @@ Messages:
       no-camera: "No camera"
       help: "Help"
       no-permission: "No premission"
+    SetDuration:
+        success: "Set duration"
+        help: "Help"
+        no-permission: "No premission"
