@@ -3,6 +3,7 @@ package net.draimcido.draimcamera.Commands.CameraCmds;
 import net.draimcido.draimcamera.Commands.DraimCameraCommand;
 import net.draimcido.draimcamera.Main;
 import net.draimcido.draimcamera.Utils.Camera.CmdExecutor;
+import net.draimcido.draimcamera.Utils.MessageUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -30,10 +31,10 @@ public class AddPoint extends DraimCameraCommand {
                 String camera_name = plugin.player_selected_camera.get(((Player) sender).getUniqueId());
                 if (camera_name != null) {
                     plugin.getConfigCameras().camera_addpoint(((Player) sender).getLocation(), easign, camera_name);
-                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.AddPoint.add"));
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.AddPoint.add"), sender);
                 } else {
-                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.not-select"));
-                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.help"));
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.not-select"), sender);
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.help"), sender);
                 }
 
             } else if (args.length == 1)  {
@@ -42,21 +43,21 @@ public class AddPoint extends DraimCameraCommand {
                 if (easign.equalsIgnoreCase("linear") || easign.equalsIgnoreCase("teleport")) {
                     if (camera_name != null) {
                         plugin.getConfigCameras().camera_addpoint(((Player) sender).getLocation(), easign, camera_name);
-                        sender.sendMessage(plugin.getConfig().getString("Messages.Commands.AddPoint.add"));
+                        MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.AddPoint.add"), sender);
                     } else {
-                        sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.not-select"));
-                        sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.help"));
+                        MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.not-select"), sender);
+                        MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.help"), sender);
                     }
                 } else {
-                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.AddPoint.help"));
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.AddPoint.help"), sender);
                 }
 
             } else {
-                sender.sendMessage(plugin.getConfig().getString("Messages.Commands.AddPoint.help"));
+                MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.AddPoint.help"), sender);
             }
 
         } else {
-            sender.sendMessage(plugin.getConfig().getString("Messages.Commands.AddPoint.no-permission"));
+            MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.AddPoint.no-permission"), sender);
         }
         return false;
     }

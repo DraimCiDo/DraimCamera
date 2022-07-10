@@ -3,6 +3,7 @@ package net.draimcido.draimcamera.Commands.CameraCmds;
 import net.draimcido.draimcamera.Commands.DraimCameraCommand;
 import net.draimcido.draimcamera.Main;
 import net.draimcido.draimcamera.Utils.Camera.CmdExecutor;
+import net.draimcido.draimcamera.Utils.MessageUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -18,17 +19,17 @@ public class Remove extends DraimCameraCommand {
             if (args.length == 1) {
                 String camera_name = args[0];
                 if (plugin.getConfigCameras().remove_camera(camera_name)) {
-                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Remove.removed"));
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Remove.removed"), sender);
                 } else {
-                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Remove.not-found"));
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Remove.not-found"), sender);
                 }
 
             } else {
-                sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Remove.help"));
+                MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Remove.help"), sender);
             }
 
         } else {
-            sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Remove.no-permission"));
+            MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Remove.no-permission"), sender);
         }
 
         return false;

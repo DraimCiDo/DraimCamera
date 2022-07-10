@@ -3,6 +3,7 @@ package net.draimcido.draimcamera.Commands.CameraCmds;
 import net.draimcido.draimcamera.Commands.DraimCameraCommand;
 import net.draimcido.draimcamera.Main;
 import net.draimcido.draimcamera.Utils.Camera.CmdExecutor;
+import net.draimcido.draimcamera.Utils.MessageUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -25,18 +26,18 @@ public class RemovePoint extends DraimCameraCommand {
                 String camera_name = plugin.player_selected_camera.get(((Player) sender).getUniqueId());
                 if (camera_name != null) {
                     plugin.getConfigCameras().camera_removepoint(camera_name, num);
-                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.RemovePoint.success"));
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.RemovePoint.success"), sender);
                 } else {
-                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.RemovePoint.no-camera"));
-                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.RemovePoint.help"));
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.RemovePoint.no-camera"), sender);
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.RemovePoint.help"), sender);
                 }
 
             } else {
-                sender.sendMessage(plugin.getConfig().getString("Messages.Commands.RemovePoint.help"));
+                MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.RemovePoint.help"), sender);
             }
 
         } else {
-            sender.sendMessage(plugin.getConfig().getString("Messages.Commands.RemovePoint.no-permission"));
+            MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.RemovePoint.no-permission"), sender);
         }
         return false;
     }

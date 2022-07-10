@@ -3,6 +3,7 @@ package net.draimcido.draimcamera.Commands.CameraCmds;
 import net.draimcido.draimcamera.Commands.DraimCameraCommand;
 import net.draimcido.draimcamera.Main;
 import net.draimcido.draimcamera.Utils.Camera.CmdExecutor;
+import net.draimcido.draimcamera.Utils.MessageUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -31,13 +32,13 @@ public class Invisible extends DraimCameraCommand {
                     boolean set_invisible = args[0].equalsIgnoreCase("true");
                     player.setInvisible(set_invisible);
                 } else {
-                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Invisible.help"));
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Invisible.help"), sender);
                 }
             } else {
-                sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Invisible.help"));
+                MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Invisible.help"), sender);
             }
         } else {
-            sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Invisible.no-permission"));
+            MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Invisible.no-permission"), sender);
         }
         return false;
     }

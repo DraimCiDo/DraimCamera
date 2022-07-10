@@ -5,6 +5,7 @@ import net.draimcido.draimcamera.Handlers.CameraHandler;
 import net.draimcido.draimcamera.Main;
 import net.draimcido.draimcamera.Utils.Camera.CameraMode;
 import net.draimcido.draimcamera.Utils.Camera.CmdExecutor;
+import net.draimcido.draimcamera.Utils.MessageUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -38,18 +39,18 @@ public class Preview extends DraimCameraCommand {
                         this.plugin.player_camera_handler.put(((Player) sender).getUniqueId(), new CameraHandler(plugin, (Player) sender, camera_name).generatePath().preview((Player) sender, num, preview_time));
 
                     } else {
-                        sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Preview.no-camera"));
-                        sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Preview.help"));
+                        MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Preview.no-camera"), sender);
+                        MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Preview.help"), sender);
                     }
 
                 } else {
-                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Preview.help"));
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Preview.help"), sender);
                 }
             } else {
-                sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Preview.arleady-active"));
+                MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Preview.already-active"), sender);
             }
         } else {
-            sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Preview.no-permission"));
+            MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Preview.no-permission"), sender);
         }
 
         return false;

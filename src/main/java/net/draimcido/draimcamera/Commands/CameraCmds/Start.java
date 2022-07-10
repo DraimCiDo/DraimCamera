@@ -5,6 +5,7 @@ import net.draimcido.draimcamera.Handlers.CameraHandler;
 import net.draimcido.draimcamera.Main;
 import net.draimcido.draimcamera.Utils.Camera.CameraMode;
 import net.draimcido.draimcamera.Utils.Camera.CmdExecutor;
+import net.draimcido.draimcamera.Utils.MessageUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -24,14 +25,16 @@ public class Start extends DraimCameraCommand {
                     if (camera_name != null) {
                         this.plugin.player_camera_handler.put(((Player) sender).getUniqueId(), new CameraHandler(plugin, (Player) sender, camera_name).generatePath().start());
                     } else {
-                        sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.not-select"));
-                        sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.help"));
+                        MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.not-select"), sender);
+                        MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.help"), sender);
                     }
+
                 } else {
-                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.already-started"));
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.already-started"), sender);
                 }
+
             } else {
-                sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.help"));
+                MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.help"), sender);
             }
 
         } else if (args.length == 1) {
@@ -42,16 +45,19 @@ public class Start extends DraimCameraCommand {
                     if (this.plugin.getConfigCameras().camera_exists(camera_name)) {
                         this.plugin.player_camera_handler.put(((Player) sender).getUniqueId(), new CameraHandler(plugin, (Player) sender, camera_name).generatePath().start());
                     } else {
-                        sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.not-found"));
+                        MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.not-found"), sender);
                     }
+
                 } else {
-                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.already-started"));
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.already-started"), sender);
                 }
+
             } else {
-                sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.no-permission"));
+                MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.no-permission"), sender);
             }
+
         } else {
-            sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.help"));
+            MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.help"), sender);
         }
         return false;
     }

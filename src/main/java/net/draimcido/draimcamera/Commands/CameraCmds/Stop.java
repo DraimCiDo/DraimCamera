@@ -4,6 +4,7 @@ import net.draimcido.draimcamera.Commands.DraimCameraCommand;
 import net.draimcido.draimcamera.Main;
 import net.draimcido.draimcamera.Utils.Camera.CameraMode;
 import net.draimcido.draimcamera.Utils.Camera.CmdExecutor;
+import net.draimcido.draimcamera.Utils.MessageUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -21,13 +22,13 @@ public class Stop extends DraimCameraCommand {
                 if (this.plugin.player_camera_mode.get(((Player) sender).getUniqueId()) != null && this.plugin.player_camera_mode.get(((Player) sender).getUniqueId()) != CameraMode.NONE
                         &&  this.plugin.player_camera_handler.get(((Player) sender).getUniqueId()) != null) {
                 this.plugin.player_camera_handler.get(((Player) sender).getUniqueId()).stop();
-                if (!sender.hasPermission("draimcamera.hidestartmessage")) sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Stop.stopped"));
+                if (!sender.hasPermission("draimcamera.hidestartmessage")) MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Stop.stopped"), sender);
                 } else {
-                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Stop.not-started"));
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Stop.not-started"), sender);
                 }
 
             } else {
-                sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Stop.no-permission"));
+                MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Stop.no-permission"), sender);
             }
         }
 

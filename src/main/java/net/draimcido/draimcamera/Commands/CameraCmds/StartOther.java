@@ -5,6 +5,7 @@ import net.draimcido.draimcamera.Handlers.CameraHandler;
 import net.draimcido.draimcamera.Main;
 import net.draimcido.draimcamera.Utils.Camera.CameraMode;
 import net.draimcido.draimcamera.Utils.Camera.CmdExecutor;
+import net.draimcido.draimcamera.Utils.MessageUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -28,25 +29,25 @@ public class StartOther extends DraimCameraCommand {
                     if (this.plugin.player_camera_mode.get(target_player.getUniqueId()) == null || this.plugin.player_camera_mode.get(target_player.getUniqueId()) == CameraMode.NONE )  {
                         if (this.plugin.getConfigCameras().camera_exists(camera_name)) {
                             this.plugin.player_camera_handler.put(target_player.getUniqueId(), new CameraHandler(plugin, target_player, camera_name).generatePath().start());
-                            sender.sendMessage(plugin.getConfig().getString("Messages.Commands.StartOther.started"));
+                            MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.StartOther.started"), sender);
                         } else {
-                            sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.not-select"));
+                            MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.not-select"), sender);
                         }
 
                     } else {
-                        sender.sendMessage(plugin.getConfig().getString("Messages.Commands.StartOther.already-started"));
+                        MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.StartOther.already-started"), sender);
                     }
 
                 } else {
-                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.StartOther.player-not-found"));
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.StartOther.player-not-found"), sender);
                 }
 
             } else {
-                sender.sendMessage(plugin.getConfig().getString("Messages.Commands.StartOther.no-permission"));
+                MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.StartOther.no-permission"), sender);
             }
 
         } else {
-            sender.sendMessage(plugin.getConfig().getString("Messages.Commands.StartOther.help"));
+            MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.StartOther.help"), sender);
         }
         return false;
     }
