@@ -3,6 +3,9 @@ Camera-Effects:
   invisible: false
 
 Point-Preview-Time: 5
+On-Join:
+  show-once: true
+  random-player-camera-path: []
 
 Messages:
   Camera:

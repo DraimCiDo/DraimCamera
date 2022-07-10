@@ -55,3 +55,6 @@ permissions:
   draimcamera.reload:
     description: Перезагрузка плагина
     default: false
+  draimcamera.bypass.joincamera:
+    description: Предоставление доступа к камере при присоединении к игре
+    default: false
