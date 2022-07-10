@@ -1,10 +1,13 @@
 package net.draimcido.draimcamera.Commands.CameraCmds;
 
 import net.draimcido.draimcamera.Commands.DraimCameraCommand;
+import net.draimcido.draimcamera.Handlers.CameraHandler;
 import net.draimcido.draimcamera.Main;
+import net.draimcido.draimcamera.Utils.Camera.CameraMode;
 import net.draimcido.draimcamera.Utils.Camera.CmdExecutor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class Start extends DraimCameraCommand {
 
@@ -14,10 +17,45 @@ public class Start extends DraimCameraCommand {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+        if (args.length == 0) {
+            if (sender.hasPermission("draimcamera.cmd.start")) {
+                if (this.plugin.player_camera_mode.get(((Player) sender).getUniqueId()) == null || this.plugin.player_camera_mode.get(((Player) sender).getUniqueId()) == CameraMode.NONE) {
+                    String camera_name = plugin.player_selected_camera.get(((Player) sender).getUniqueId());
+                    if (camera_name != null) {
+                        this.plugin.player_camera_handler.put(((Player) sender).getUniqueId(), new CameraHandler(plugin, (Player) sender, camera_name).generatePath().start());
+                    } else {
+                        sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.not-select"));
+                        sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.help"));
+                    }
+                } else {
+                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.already-started"));
+                }
+            } else {
+                sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.help"));
+            }
 
-        // TODO: Add command to start camera
+        } else if (args.length == 1) {
+            String camera_name = args[0];
+
+            if (sender.hasPermission("draimcamera.cmd.start." + camera_name.toLowerCase())) {
+                if (this.plugin.player_camera_mode.get(((Player) sender).getUniqueId()) == null || this.plugin.player_camera_mode.get(((Player) sender).getUniqueId()) == CameraMode.NONE) {
+                    if (this.plugin.getConfigCameras().camera_exists(camera_name)) {
+                        this.plugin.player_camera_handler.put(((Player) sender).getUniqueId(), new CameraHandler(plugin, (Player) sender, camera_name).generatePath().start());
+                    } else {
+                        sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.not-found"));
+                    }
+                } else {
+                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.already-started"));
+                }
+            } else {
+                sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.no-permission"));
+            }
+        } else {
+            sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Start.help"));
+        }
         return false;
     }
 }
+
 
 

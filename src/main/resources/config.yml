@@ -53,3 +53,8 @@ Messages:
         success: "Set duration"
         help: "Help"
         no-permission: "No premission"
+    Start:
+      not-found: "Not found"
+      already-started: "Already started"
+      no-permission: "No premission"
+      help: "Help"
