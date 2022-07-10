@@ -20,6 +20,7 @@ Messages:
       select: "Selected!"
       not-select: "Not selected"
       help: "Help"
+      no-permission: "No premission"
     AddPoint:
       add: "Add"
       help: "Help"
