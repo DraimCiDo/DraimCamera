@@ -4,11 +4,15 @@ import net.draimcido.draimcamera.Commands.MainCommands;
 import net.draimcido.draimcamera.Commands.TabComplete;
 import net.draimcido.draimcamera.Config.CameraConfig;
 import net.draimcido.draimcamera.Config.MessageConfig;
+import net.draimcido.draimcamera.Events.OnJoin;
+import net.draimcido.draimcamera.Events.OnMove;
 import net.draimcido.draimcamera.Handlers.CameraHandler;
 import net.draimcido.draimcamera.Utils.Camera.CameraMode;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -72,6 +76,8 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         pdf = this.getDescription();         // Получение информации из plugin.yml.
 
+        Bukkit.getServer().getPluginManager().registerEvents((Listener) new OnMove(this), (Plugin) this);    // Регистрация обработчика движения игрока.
+        Bukkit.getServer().getPluginManager().registerEvents((Listener) new OnJoin(this), (Plugin) this);    // Регистрация обработчика присоединения игрока.
         Bukkit.getServer().getPluginCommand("draimcamera").setExecutor((CommandExecutor) new MainCommands(this));        // Подгрузка команд плагина.
         Bukkit.getServer().getPluginCommand("draimcamera").setTabCompleter(new TabComplete(this));        // Подгрузка табуляции команд.
 
