@@ -41,7 +41,6 @@ public class MainCommands  implements CommandExecutor {
         new SetDuration(plugin, "setduration");
         new Start(plugin, "start");
         new StartOther(plugin, "startother");
-        new Stats(plugin, "stats");
         new Stop(plugin, "stop");
     }
 

@@ -44,7 +44,6 @@ public class TabComplete implements TabCompleter {
             commands_list.add("setduration");
             commands_list.add("start");
             commands_list.add("startother");
-            commands_list.add("stats");
             commands_list.add("stop");
 
 
