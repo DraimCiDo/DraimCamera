@@ -58,3 +58,9 @@ Messages:
       already-started: "Already started"
       no-permission: "No premission"
       help: "Help"
+    StartOther:
+      started: "Started"
+      arleady-started: "Already started"
+      player-not-found: "Player not found"
+      no-permission: "No premission"
+      help: "Help"
