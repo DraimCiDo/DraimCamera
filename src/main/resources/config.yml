@@ -64,3 +64,7 @@ Messages:
       player-not-found: "Player not found"
       no-permission: "No premission"
       help: "Help"
+    Stop:
+      stopped: "Stopped"
+      not-started: "Not started"
+      no-permission: "No premission"
