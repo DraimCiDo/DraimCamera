@@ -47,9 +47,9 @@ public class MainCommands  implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage("DraimCamera v" + plugin.getDescription().getVersion());
-            sender.sendMessage("Use /draimcamera help for more information.");
-            sender.sendMessage("Use /draimcamera reload to reload the config.");
+            sender.sendMessage("&6DraimCamera v" + plugin.getDescription().getVersion());
+            sender.sendMessage("&fUse &2/draimcamera help &ffor more information.");
+            sender.sendMessage("&fUse &2/draimcamera reload &fto reload the config.");
         } else {
             String command = args[0];
             DraimCameraCommand command_handler = get_draimcamera_command(command);
@@ -62,7 +62,7 @@ public class MainCommands  implements CommandExecutor {
                      sender.sendMessage("Only players can use this command.");
                }
             } else {
-                sender.sendMessage("Unknown command: " + command);
+                sender.sendMessage("&8(&c!&8) &fUnknown command: &2" + command);
             }
         }
 
