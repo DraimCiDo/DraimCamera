@@ -38,3 +38,8 @@ Messages:
       no-camera: "No camera"
       arleady-active: "Already active"
       no-permission: "No premission"
+    Remove:
+      removed: "Removed"
+      not-found: "Not found"
+      help: "Help"
+      no-permission: "No premission"

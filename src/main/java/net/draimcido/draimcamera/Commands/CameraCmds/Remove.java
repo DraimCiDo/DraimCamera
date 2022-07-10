@@ -14,8 +14,23 @@ public class Remove extends DraimCameraCommand {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+        if (sender.hasPermission("draimcamera.cmd.remove")) {
+            if (args.length == 1) {
+                String camera_name = args[0];
+                if (plugin.getConfigCameras().remove_camera(camera_name)) {
+                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Remove.removed"));
+                } else {
+                    sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Remove.not-found"));
+                }
 
-        // TODO: Add command to remove camera
+            } else {
+                sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Remove.help"));
+            }
+
+        } else {
+            sender.sendMessage(plugin.getConfig().getString("Messages.Commands.Remove.no-permission"));
+        }
+
         return false;
     }
 }
