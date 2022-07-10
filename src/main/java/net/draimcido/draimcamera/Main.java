@@ -18,120 +18,81 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * The type Main.
+ * Класс Main.
+ * Отвечает за запуск плагина.
+ * И запускает все остальные классы.
+ * @author DraimCiDo
  */
 public final class Main extends JavaPlugin {
 
-    /**
-     * The constant config.
-     */
-    public static FileConfiguration config;
+    public static FileConfiguration config;    // Статический метод для получения конфигурации плагина.
+    private static Main instance;    // Статический метод инициализации плагина.
+    private PluginDescriptionFile pdf;    // Метод для получение информации из plugin.yml.
 
-    private static Main instance;
-    private PluginDescriptionFile pdf;
-    private CameraConfig config_cameras;
-    private MessageConfig config_plugin;
+    private CameraConfig config_cameras;    // Инициализация конфигурации камеры.
+    private MessageConfig config_plugin;    // Инициализация конфигурации плагина.
 
-
-    /**
-     * The Player selected camera.
-     */
-    public HashMap<UUID, String> player_selected_camera = new HashMap<UUID, String>();
-    /**
-     * The Player camera mode.
-     */
-    public HashMap<UUID, CameraMode> player_camera_mode = new HashMap<UUID, CameraMode>();
-    /**
-     * The Player camera handler.
-     */
-    public HashMap<UUID, CameraHandler> player_camera_handler = new HashMap<UUID, CameraHandler>();
+    public HashMap<UUID, String> player_selected_camera = new HashMap<UUID, String>();    // Игрок который в данный момент видит камеру.
+    public HashMap<UUID, CameraMode> player_camera_mode = new HashMap<UUID, CameraMode>();    // Метод выбора камеры для игрока.
+    public HashMap<UUID, CameraHandler> player_camera_handler = new HashMap<UUID, CameraHandler>();    // Обработчик камеры под игрока.
 
     /**
-     * Gets instance.
+     * Получение инстанса плагина.
      *
-     * @return the instance
+     * @return instance - инстанс плагина.
      */
     public static Main getInstance() {
         return instance;
     }
 
     /**
-     * Gets config int.
+     * Получение внутриной конфигурации плагина.
      *
-     * @param path the path
-     * @return the config int
+     * @param path путь к параметру
+     * @return - возвращение параметра.
      */
     public static int getConfigInt(String path) {
         return config.getInt(path);
     }
 
-    /**
-     * Gets config integer list.
-     *
-     * @param path the path
-     * @return the config integer list
-     */
-    public static List<Integer> getConfigIntegerList(String path) {
-        return config.getIntegerList(path);
-    }
 
     /**
-     * Gets config boolean.
+     * Получение информации из plugin.yml.
      *
-     * @param path the path
-     * @return the config boolean
-     */
-    public static Boolean getConfigBoolean(String path) {
-        return config.getBoolean(path);
-    }
-
-    /**
-     * Gets config string list.
-     *
-     * @param path the path
-     * @return the config string list
-     */
-    public static List<String> getConfigStringList(String path) {
-        return config.getStringList(path);
-    }
-
-    /**
-     * Gets config string.
-     *
-     * @param path the path
-     * @return the config string
-     */
-    public static String getConfigString(String path) {
-        return config.getString(path);
-    }
-
-    /**
-     * Gets plugin description file.
-     *
-     * @return the plugin description file
+     * @return - возвращение к plugin.yml
      */
     public PluginDescriptionFile getPluginDescriptionFile() {
         return this.pdf;
     }
 
+
+    /**
+     *  Метод для запуска плагина.
+     */
     public void onEnable() {
-        pdf = this.getDescription();
+        pdf = this.getDescription();         // Получение информации из plugin.yml.
 
-        Bukkit.getServer().getPluginCommand("draimcamera").setExecutor((CommandExecutor) new MainCommands(this));
-        Bukkit.getServer().getPluginCommand("draimcamera").setTabCompleter(new TabComplete(this));
+        Bukkit.getServer().getPluginCommand("draimcamera").setExecutor((CommandExecutor) new MainCommands(this));        // Подгрузка команд плагина.
+        Bukkit.getServer().getPluginCommand("draimcamera").setTabCompleter(new TabComplete(this));        // Подгрузка табуляции команд.
 
-        setupConfig();
+        setupConfig();        // Загрузка конфигурации плагина.
 
-        getLogger().info("DraimCamera v" + pdf.getVersion() + " enabled!");
+        getLogger().info("DraimCamera v" + pdf.getVersion() + " enabled!");        // Оповещение о запуске плагина.
     }
 
+    /**
+     * Метод для остановки плагина.
+     */
     public void onDisable() {
-        getLogger().info("DraimCamera v" + pdf.getVersion() + " disabled!");
+        getLogger().info("DraimCamera v" + pdf.getVersion() + " disabled!");        // Оповещение о отключении плагина.
     }
 
+    /**
+     * Метод для загрузки конфигурации плагина.
+     */
     private void setupConfig() {
-        config_plugin = new MessageConfig(this);
-        config_cameras = new CameraConfig(this);
+        config_plugin = new MessageConfig(this);         // Подхват файла MessageConfig как конфигурации плагина.
+        config_cameras = new CameraConfig(this);        // Подхват файла CameraConfig как конфигурации камеры.
 
         config_plugin.getConfig().set("version", null);
         config_cameras.getConfig().set("version", null);
@@ -157,25 +118,25 @@ public final class Main extends JavaPlugin {
         }
 
         config_plugin.getConfig().set("version", getPluginDescriptionFile().getVersion());
-        config_plugin.saveConfig();
+        config_plugin.saveConfig();        // Сохранение конфигурации плагина.
 
         config_cameras.getConfig().set("version", getPluginDescriptionFile().getVersion());
-        config_cameras.saveConfig();
+        config_cameras.saveConfig();         // Сохранение конфигурации камеры.
     }
 
     /**
-     * Gets message config.
+     * Получение сообщения из конфигурации плагина.
      *
-     * @return the message config
+     * @return config_plugin - возвращение к конфигу.
      */
     public MessageConfig getMessageConfig() {
         return config_plugin;
     }
 
     /**
-     * Gets config cameras.
+     * Получение сообщения из конфигурации камеры.
      *
-     * @return the config cameras
+     * @return config_cameras - возвращение к конфигу.
      */
     public CameraConfig getConfigCameras() {
         return config_cameras;
