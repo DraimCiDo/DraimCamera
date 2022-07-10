@@ -43,3 +43,8 @@ Messages:
       not-found: "Not found"
       help: "Help"
       no-permission: "No premission"
+    RemovePoint:
+      success: "Removed"
+      no-camera: "No camera"
+      help: "Help"
+      no-permission: "No premission"
