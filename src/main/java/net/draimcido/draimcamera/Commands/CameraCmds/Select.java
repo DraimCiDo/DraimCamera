@@ -21,7 +21,7 @@ public class Select extends DraimCameraCommand {
                 String camera_name = args[0];
                 if (plugin.getConfigCameras().camera_exists(camera_name)) {
                     plugin.player_selected_camera.put(((Player) sender).getUniqueId(), plugin.getConfigCameras().get_camera_name_ignorecase(camera_name));
-                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.selected"), sender);
+                    MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.select"), sender);
                 } else {
                     MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.not-select"), sender);
                 }

@@ -40,7 +40,7 @@ public class Preview extends DraimCameraCommand {
 
                     } else {
                         MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Preview.no-camera"), sender);
-                        MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Preview.help"), sender);
+                        MessageUtils.sendMessage(plugin.getConfig().getString("Messages.Commands.Select.help"), sender);
                     }
 
                 } else {
