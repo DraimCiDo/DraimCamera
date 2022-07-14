@@ -35,7 +35,6 @@ public class MainCommands  implements CommandExecutor {
         new Create(plugin, "create");
         new Help(plugin, "help");
         new Invisible(plugin, "invisible");
-        new Preview(plugin, "preview");
         new Remove(plugin, "remove");
         new RemovePoint(plugin, "removepoint");
         new Select(plugin, "select");

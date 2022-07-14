@@ -31,7 +31,6 @@ public class Help extends DraimCameraCommand {
                 sender.sendMessage("§2/dc addpoint <name> §7- §fAdd a point");
                 sender.sendMessage("§2/dc create <name> §7- §fCreate a camera");
                 sender.sendMessage("§2/dc invisible §7- §fToggle invisible mode");
-                sender.sendMessage("§2/dc preview §7- §fPreview the camera");
                 sender.sendMessage("§2/dc remove <name> §7- §fRemove a camera");
                 sender.sendMessage("§2/dc removepoint <name> §7- §fRemove a point");
                 sender.sendMessage("§2/dc select <name> §7- §fSelect a camera");

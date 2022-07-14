@@ -9,12 +9,6 @@ On-Join:
   random-player-camera-path: []
 
 Messages:
-  Camera:
-    viewing-stop: "Viewing stop"
-    viewing-start: "Viewing start"
-    viewing-preview-error: "Viewing preview error"
-    viewing-preview-start: "Viewing preview start"
-    viewing-preview-ended: "Viewing preview ended"
   Commands:
     AddCommand:
       add: "&8(&6!&8) &fCommand added to camera!"
@@ -39,11 +33,6 @@ Messages:
     Invisible:
       Help: "&8(&2!&8) &fUsage: &2/dc invisible <true/false>"
       no-permission: "&8(&4!&8) &fYou don't have permission to use this command!"
-    Preview:
-      no-camera: "&8(&c!&8) &fNo camera selected!"
-      already-active: "&8(&c!&8) &fCamera already active!"
-      no-permission: "&8(&4!&8) &fYou don't have permission to use this command!"
-      help: "&8(&2!&8) &fUsage: &2/dc preview <point-number>"
     Remove:
       removed: "&8(&6!&8) &fCamera deleted!"
       not-found: "&8(&c!&8) &fA camera does not exists!"

@@ -212,43 +212,7 @@ public class CameraHandler extends BukkitRunnable {
             if (this.plugin.getConfig().getBoolean("Camera-Effects.invisible")) player.setInvisible(previous_invisible);
             if (this.plugin.getConfig().getBoolean("Camera-Effects.cinematic-mode")) player.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
             plugin.player_camera_mode.put(player.getUniqueId(), CameraMode.NONE);
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getConfig().getString("Messages.Camera.viewing-stop")));
+            player.sendMessage(ChatColor.WHITE + "Preview stopped.");
         }
-    }
-
-    /**
-     * Preview camera handler.
-     *
-     * @param player       the player
-     * @param num          the num
-     * @param preview_time the preview time
-     * @return the camera handler
-     */
-    public CameraHandler preview(Player player, int num, int preview_time) {
-        List<String> camera_points = plugin.getConfigCameras().getPoints(camera_name);
-
-        if (num < 0) num = 0;
-        if (num > camera_points.size() - 1) num = camera_points.size() - 1;
-
-        if (!camera_points.get(num).split(":", 2)[0].equalsIgnoreCase("location")) {
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getConfig().getString("Messages.Camera.viewing-preview-error")));
-            return this;
-        }
-
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getConfig().getString("Messages.Camera.viewing-preview-start")));
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getConfig().getString("Messages.Camera.viewing-preview-ended")));
-
-        privious_gamemode = player.getGameMode();
-        privious_player_location = player.getLocation();
-        Location point = CameraUtils.deserializeLocation(camera_points.get(num).split(":", 3)[2]);
-        previous_invisible = player.isInvisible();
-
-        plugin.player_camera_mode.put(player.getUniqueId(), CameraMode.PREVIEW);
-        if (this.plugin.getConfig().getBoolean("Camera-Effects.spectator-mode")) player.setGameMode(GameMode.SPECTATOR);
-        if (this.plugin.getConfig().getBoolean("Camera-Effects.invisible")) player.setInvisible(true);
-        player.teleport(point);
-
-        runTaskLater(this.plugin, preview_time * 20);
-        return this;
     }
 }
