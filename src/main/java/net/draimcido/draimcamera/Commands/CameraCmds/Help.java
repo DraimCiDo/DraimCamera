@@ -39,7 +39,6 @@ public class Help extends DraimCameraCommand {
                 sender.sendMessage("§2/dc start <name> §7- §fStart a camera");
                 sender.sendMessage("§2/dc startother <name> §7- §fStart a camera on another player");
                 sender.sendMessage("§2/dc stop <name> §7- §fStop a camera");
-                sender.sendMessage("§2/dc stats §7- §fShow stats");
 
             } else {
                 sender.sendMessage("§6DraimCamera Help");
