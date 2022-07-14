@@ -1,7 +1,9 @@
 Camera-Effects:
-  spectator-mode: true
-  invisible: false
+  spectator-mode: false
+  invisible: true
   cinematic-mode: true
+  hide-other-players: true
+  hide-player: true
 
 Point-Preview-Time: 5
 On-Join:

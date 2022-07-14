@@ -3,6 +3,8 @@ version: '${project.version}'
 main: net.draimcido.draimcamera.Main
 api-version: 1.19
 authors: [ DraimGooSe ]
+depend:
+  - ProtocolLib
 
 commands:
   draimcamera:

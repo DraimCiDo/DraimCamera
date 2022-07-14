@@ -4,11 +4,13 @@ import net.draimcido.draimcamera.Main;
 import net.draimcido.draimcamera.Utils.Camera.CameraMode;
 import net.draimcido.draimcamera.Utils.Camera.CameraUtils;
 import org.bukkit.*;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +32,8 @@ public class CameraHandler extends BukkitRunnable {
     private GameMode privious_gamemode;
     private Location privious_player_location;
     private boolean previous_invisible;
+
+    private ArrayList<String> HiddenPlayers = new ArrayList<String>();
 
     /**
      * Instantiates a new Camera handler.
@@ -137,6 +141,40 @@ public class CameraHandler extends BukkitRunnable {
         return new Vector(end.getX() - start.getX(), end.getY() - start.getY(), end.getZ() - start.getZ());
     }
 
+
+    /**
+     * Убирает других игроков, когда игрок находиться в режиме камеры.
+     */
+    private void HideOtherPlayers(String yes_or_no) {
+        for (Player other : Bukkit.getServer().getOnlinePlayers()) {
+
+            if (yes_or_no.equalsIgnoreCase("no")) {
+                player.showPlayer(other);
+            }
+            if (yes_or_no.equalsIgnoreCase("yes")) {
+                player.hidePlayer(other);
+            }
+        }
+    }
+
+    /**
+     * Убирает показ игрока, когда он находиться в режиме камеры.
+     */
+    private void HidePlayer(String yes_or_no) {
+        for (Player pls : Bukkit.getOnlinePlayers()) {
+
+            if (yes_or_no.equalsIgnoreCase("no")) {
+                HiddenPlayers.add(player.getName());
+                pls.showPlayer(player);
+            }
+            if (yes_or_no.equalsIgnoreCase("yes")) {
+                HiddenPlayers.remove(player.getName());
+                pls.hidePlayer(player);
+            }
+        }
+    }
+
+
     /**
      * Start camera handler.
      *
@@ -150,6 +188,8 @@ public class CameraHandler extends BukkitRunnable {
         if (this.plugin.getConfig().getBoolean("Camera-Effects.spectator-mode")) this.player.setGameMode(GameMode.SPECTATOR);
         if (this.plugin.getConfig().getBoolean("Camera-Effects.invisible")) player.setInvisible(true);
         if (this.plugin.getConfig().getBoolean("Camera-Effects.cinematic-mode")) player.getInventory().setHelmet(new ItemStack(Material.CARVED_PUMPKIN, 1));
+        if (this.plugin.getConfig().getBoolean("Camera-Effects.hide-other-players")) HideOtherPlayers("yes");
+        if (this.plugin.getConfig().getBoolean("Camera-Effects.hide-player")) HidePlayer("yes");
 
         this.plugin.player_camera_mode.put(this.player.getUniqueId(), CameraMode.VIEW);
         runTaskTimer(this.plugin, 1L, 1L);
@@ -178,6 +218,8 @@ public class CameraHandler extends BukkitRunnable {
         if (this.plugin.getConfig().getBoolean("Camera-Effects.spectator-mode")) player.setGameMode(privious_gamemode);
         if (this.plugin.getConfig().getBoolean("Camera-Effects.invisible")) player.setInvisible(previous_invisible);
         if (this.plugin.getConfig().getBoolean("Camera-Effects.cinematic-mode")) player.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
+        if (this.plugin.getConfig().getBoolean("Camera-Effects.hide-other-players")) HideOtherPlayers("no");
+        if (this.plugin.getConfig().getBoolean("Camera-Effects.hide-player")) HidePlayer("no");
 
         if (!this.player.hasPermission("draimcamera.bypass")) this.player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getConfig().getString("Messages.Camera.viewing-stop")));
 
@@ -211,6 +253,9 @@ public class CameraHandler extends BukkitRunnable {
             if (this.plugin.getConfig().getBoolean("Camera-Effects.spectator-mode")) player.setGameMode(privious_gamemode);
             if (this.plugin.getConfig().getBoolean("Camera-Effects.invisible")) player.setInvisible(previous_invisible);
             if (this.plugin.getConfig().getBoolean("Camera-Effects.cinematic-mode")) player.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
+            if (this.plugin.getConfig().getBoolean("Camera-Effects.hide-other-players")) HideOtherPlayers("no");
+            if (this.plugin.getConfig().getBoolean("Camera-Effects.hide-player")) HidePlayer("no");
+
             plugin.player_camera_mode.put(player.getUniqueId(), CameraMode.NONE);
             player.sendMessage(ChatColor.WHITE + "Preview stopped.");
         }

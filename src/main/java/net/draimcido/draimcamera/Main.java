@@ -74,6 +74,7 @@ public final class Main extends JavaPlugin {
      *  Метод для запуска плагина.
      */
     public void onEnable() {
+
         pdf = this.getDescription();         // Получение информации из plugin.yml.
 
         Bukkit.getServer().getPluginManager().registerEvents((Listener) new OnMove(this), (Plugin) this);    // Регистрация обработчика движения игрока.
