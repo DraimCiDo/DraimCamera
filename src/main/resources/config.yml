@@ -1,6 +1,7 @@
 Camera-Effects:
   spectator-mode: true
   invisible: false
+  cinematic-mode: true
 
 Point-Preview-Time: 5
 On-Join:
@@ -40,8 +41,9 @@ Messages:
       no-permission: "&8(&4!&8) &fYou don't have permission to use this command!"
     Preview:
       no-camera: "&8(&c!&8) &fNo camera selected!"
-      arleady-active: "&8(&c!&8) &fCamera already active!"
+      already-active: "&8(&c!&8) &fCamera already active!"
       no-permission: "&8(&4!&8) &fYou don't have permission to use this command!"
+      help: "&8(&2!&8) &fUsage: &2/dc preview <point-number>"
     Remove:
       removed: "&8(&6!&8) &fCamera deleted!"
       not-found: "&8(&c!&8) &fA camera does not exists!"

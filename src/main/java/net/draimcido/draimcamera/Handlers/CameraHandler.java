@@ -3,11 +3,9 @@ package net.draimcido.draimcamera.Handlers;
 import net.draimcido.draimcamera.Main;
 import net.draimcido.draimcamera.Utils.Camera.CameraMode;
 import net.draimcido.draimcamera.Utils.Camera.CameraUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -151,6 +149,7 @@ public class CameraHandler extends BukkitRunnable {
 
         if (this.plugin.getConfig().getBoolean("Camera-Effects.spectator-mode")) this.player.setGameMode(GameMode.SPECTATOR);
         if (this.plugin.getConfig().getBoolean("Camera-Effects.invisible")) player.setInvisible(true);
+        if (this.plugin.getConfig().getBoolean("Camera-Effects.cinematic-mode")) player.getInventory().setHelmet(new ItemStack(Material.CARVED_PUMPKIN, 1));
 
         this.plugin.player_camera_mode.put(this.player.getUniqueId(), CameraMode.VIEW);
         runTaskTimer(this.plugin, 1L, 1L);
@@ -178,6 +177,7 @@ public class CameraHandler extends BukkitRunnable {
         player.teleport(privious_player_location);
         if (this.plugin.getConfig().getBoolean("Camera-Effects.spectator-mode")) player.setGameMode(privious_gamemode);
         if (this.plugin.getConfig().getBoolean("Camera-Effects.invisible")) player.setInvisible(previous_invisible);
+        if (this.plugin.getConfig().getBoolean("Camera-Effects.cinematic-mode")) player.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
 
         if (!this.player.hasPermission("draimcamera.bypass")) this.player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getConfig().getString("Messages.Camera.viewing-stop")));
 
@@ -210,6 +210,7 @@ public class CameraHandler extends BukkitRunnable {
             player.teleport(privious_player_location);
             if (this.plugin.getConfig().getBoolean("Camera-Effects.spectator-mode")) player.setGameMode(privious_gamemode);
             if (this.plugin.getConfig().getBoolean("Camera-Effects.invisible")) player.setInvisible(previous_invisible);
+            if (this.plugin.getConfig().getBoolean("Camera-Effects.cinematic-mode")) player.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
             plugin.player_camera_mode.put(player.getUniqueId(), CameraMode.NONE);
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getConfig().getString("Messages.Camera.viewing-stop")));
         }
